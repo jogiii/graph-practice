@@ -1,0 +1,52 @@
+# IDEs and editors
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Build outputs
+build/
+dist/
+target/
+bin/
+*.class
+*.o
+*.out
+
+# Dependencies
+node_modules/
+vendor/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Coverage and temp files
+coverage/
+*.tmp
+*.bak
