@@ -27,6 +27,8 @@ logs/
 !.env.example
 
 # Build outputs
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
 build/
 dist/
 target/
