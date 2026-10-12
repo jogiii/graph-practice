@@ -1,5 +1,6 @@
 package com.practice.graph.common;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,5 +33,10 @@ public class AdjacencyListGraph {
         for (List<Integer> neighbors : adjacencyList.values()) {
             neighbors.remove((Integer) vertex);
         }
+    }
+
+    // Vertex ke neighbours do (traversal ke liye). Sirf padhne ke liye, bahar se change nahi ho sakti.
+    public List<Integer> getNeighbors(int vertex) {
+        return Collections.unmodifiableList(adjacencyList.getOrDefault(vertex, List.of()));
     }
 }

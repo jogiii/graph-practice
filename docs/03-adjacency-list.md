@@ -227,6 +227,38 @@ Graph pehle:                     Graph baad mein:
 
 ---
 
+### 4.5 `getNeighbors(vertex)`: O(1)
+
+```java
+public List<Integer> getNeighbors(int vertex) {
+    return Collections.unmodifiableList(adjacencyList.getOrDefault(vertex, List.of()));
+}
+```
+
+Kisi vertex ke neighbours ki list deta hai. BFS/DFS jaise traversal isi se aage badhte hain ([04-dfs-iterative.md](04-dfs-iterative.md) dekho).
+
+```
+getNeighbors(3)
+
+┌───┐     ┌───┬──┐   ┌───┬──┐   ┌───┬──┐
+│ 3 │ ──► │ 2 │ ─┼──►│ 4 │ ─┼──►│ 5 │ ─┼──► ✗
+└───┘     └───┴──┘   └───┴──┘   └───┴──┘
+          └──────────── return ───────────┘     → [2, 4, 5]  (read-only)
+
+getNeighbors(99)   → []   (vertex hai hi nahi, to khaali list, null nahi)
+```
+
+Do cheezein dhyan dene layak hain:
+
+| Part | Kya karta hai | Kyun |
+|---|---|---|
+| `getOrDefault(vertex, List.of())` | Vertex na mile to khaali list do | `get()` `null` deta, aur caller ke `for` loop pe `NullPointerException` aata |
+| `Collections.unmodifiableList(...)` | List ka **read-only view** do | Bahar wala code `add` / `remove` karke graph ko chupke se kharab na kar sake. Koshish karega to `UnsupportedOperationException` aayega |
+
+O(1) kyun hai? `unmodifiableList` copy **nahi** banata, bas asli list ke upar ek "sirf padhne wala" wrapper lagata hai.
+
+---
+
 ## 5. Complexity summary
 
 | Operation | Adjacency List (ye code) | Adjacency Matrix |
@@ -261,5 +293,6 @@ Graph pehle:                     Graph baad mein:
 - [ ] `remove((Integer) x)` = value hatao, `remove(x)` = index hatao
 - [ ] `removeVertex` = apni line hatao **+** sabki lists se bhi hatao
 - [ ] Vertex hatane pe baaki vertices ke number nahi badalte (matrix mein badalte hain)
+- [ ] `getNeighbors`: vertex na ho to khaali list, aur list read-only (graph safe rehta hai)
 - [ ] Space O(V + E), isliye sparse graph ke liye best
 
