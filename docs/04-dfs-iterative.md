@@ -1,7 +1,7 @@
 # 04 · DFS Iterative: Stack se Depth First Search (meri implementation)
 
 > Code: [`GraphTraversalDFS.java`](../src/main/java/com/practice/graph/traversal/GraphTraversalDFS.java)
-> Related: [03-adjacency-list.md](03-adjacency-list.md) (jis graph pe DFS chal raha hai)
+> Related: [03-adjacency-list.md](03-adjacency-list.md) (jis graph pe DFS chal raha hai) · [05-dfs-recursive.md](05-dfs-recursive.md) (same DFS, recursion se)
 
 ---
 

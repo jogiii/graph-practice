@@ -40,6 +40,27 @@ public class GraphTraversalDFS {
     }
 
 
+    // DFS recursion se: stack khud nahi banana, Java ka call stack yahi kaam karta hai
+    public void DFSRecursive(AdjacencyListGraph graph, int startVertex){
+        Set<Integer> visited = new HashSet<>();
+        dfsHelper(graph, startVertex, visited);
+    }
+
+    private void dfsHelper(AdjacencyListGraph graph, int currentVertex, Set<Integer> visited){
+        //mark current vertex as visited
+        visited.add(currentVertex);
+        System.out.println("Visiting vertex: " + currentVertex);
+
+        //har unvisited neighbour ke liye wahi kaam dobara (gehrai mein jao)
+        for(int neighbour : graph.getNeighbors(currentVertex)){
+            if(!visited.contains(neighbour)){
+                dfsHelper(graph, neighbour, visited);
+            }
+        }
+        //loop khatam = is vertex se aage kuch nahi, wapas caller pe (backtrack)
+    }
+
+
     public List<Integer> dfs(AdjacencyListGraph graph, int start) {
         List<Integer> result = new ArrayList<>();   // visit order
         Set<Integer> visited = new HashSet<>();     // kaun-kaun dekh liya
@@ -92,6 +113,8 @@ public class GraphTraversalDFS {
 
         GraphTraversalDFS traversal = new GraphTraversalDFS();
         traversal.DFSIterative(graph, 1);
+        System.out.println("---- recursive ----");
+        traversal.DFSRecursive(graph, 1);
         System.out.println("dfs() order: " + traversal.dfs(graph, 1));
     }
 }
